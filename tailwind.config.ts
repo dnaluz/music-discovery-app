@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      maxHeight: {
+        'modal': '60vh',
+      },
+      zIndex: {
+        '100': '100'
+      }
     },
   },
   plugins: [],
