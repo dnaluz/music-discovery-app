@@ -37,3 +37,9 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to view the application.
 
+### Testing
+Run the following command to run the test cases
+
+```bash
+npm test
+```
