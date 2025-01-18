@@ -7,7 +7,7 @@ import Modal from '@/components/Modal';
 
 import { fetchAlbums, fetchArtist } from '@/lib/api';
 import { IAlbum } from '@/types/Album';
-import SearchForm from './forms/SearchForm';
+import SearchForm from '@/components/forms/SearchForm';
 
 const Discover = () => {
   const [albums, setAlbums] = useState<IAlbum[]>([]);
