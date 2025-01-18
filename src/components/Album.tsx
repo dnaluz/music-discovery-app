@@ -12,8 +12,8 @@ export type AlbumProps = {
 
 const Album = (album: AlbumProps) => {
 
-  const [artist, albumTitle] = album?.title?.split('-');
-  const { id, viewArtist, favorite, isArtistView, isFavorite } = album;
+  const { id, viewArtist, favorite, isArtistView, isFavorite, title } = album;
+  const [artist, albumTitle] = title?.split('-');
 
   return (
     <div className="w-full album">
