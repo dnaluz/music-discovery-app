@@ -115,7 +115,7 @@ const Discover = () => {
   return (
     <>
       {modalOpen && <><Modal title={currentArtist ? `Albums by ${currentArtist.name}` : 'Could not retrieve artist information'} onClose={() => { setModalOpen(false); }} ariaHidden={!modalOpen}>
-        <div className="grid grid-cols-4 gap-2 justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 justify-between">
           {artistAlbums?.map((album: IAlbum, index: number) => {
             return <Album id={album?.albumId} key={`modal-${album.id}-${index}`} title={album.title} coverImage={album.thumb ?? ''} viewArtist={viewArtist} isArtistView favorite={handleBookmark} isFavorite={checkIsFavorite(album.id)}/>
           })}
@@ -124,7 +124,7 @@ const Discover = () => {
       <div className='w-full h-full backdrop-blur-md bg-white/40 justify-center absolute z-50'></div>
       </>}
       {favoriteModalOpen && <><Modal title="Favorite Albums" onClose={() => setFavoriteModalOpen(false) } ariaHidden={!favoriteModalOpen}>
-          <div className="grid grid-cols-4 gap-2 justify-between">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 justify-between">
           {favorites.map((album, index: number) => (
             <div key={album.id}>
               <Album id={album?.id} key={`modal-${album.id}-${index}`} title={album.title} coverImage={album.coverImage ?? ''} viewArtist={viewArtist} isArtistView favorite={handleBookmark} isFavorite={false} />
@@ -139,14 +139,14 @@ const Discover = () => {
           <SearchForm onSubmit={search} onChangeInput={(e) => setQuery(e.currentTarget.value)}/>
         </div>
         <div className="pt-5 pb-2">
-          <div className="flex flex-row flex-wrap">
+          <div className="flex flex-col items-center justify-center lg:flex-row lg:flex-wrap">
             <FilterForm handleChange={handleFilterChange} filters={filters} />  
             <FavoriteButton openModal={() => setFavoriteModalOpen(true) } favorites={favorites.length} />
           </div>
         </div>
         <div className="w-full">
           <h2 className="text-2xl font-semibold">Albums</h2>
-          {albums.length > 0 && <div className="grid grid-cols-4 gap-2 justify-between">
+          {albums.length > 0 && <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 justify-between">
             {albums.map((album: IAlbum) => {
               return <Album id={album?.albumId} key={`album-list-${album.albumId}`} title={album.title} coverImage={album.coverImage} viewArtist={viewArtist} isArtistView={false} favorite={handleBookmark} isFavorite={checkIsFavorite(album.albumId)} />
             })}

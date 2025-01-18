@@ -4,7 +4,7 @@ export type FavoriteButtonProps = {
 }
 
 const FavoriteButton = ({openModal, favorites}: FavoriteButtonProps) => {
-  return  <div className="ml-auto mr-0 pr-0.5">
+  return  <div className="lg:ml-auto lg:mr-0 lg:pr-0.5">
     <button className="relative hover:cursor-pointer" onClick={()=> openModal() }>
       <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white text-base font-semibold">{favorites}</div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 107.39" width="40px" height="40px">
