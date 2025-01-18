@@ -147,8 +147,8 @@ const Discover = () => {
         <div className="w-full">
           <h2 className="text-2xl font-semibold">Albums</h2>
           {albums.length > 0 && <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 justify-between">
-            {albums.map((album: IAlbum) => {
-              return <Album id={album?.albumId} key={`album-list-${album.albumId}`} title={album.title} coverImage={album.coverImage} viewArtist={viewArtist} isArtistView={false} favorite={handleBookmark} isFavorite={checkIsFavorite(album.albumId)} />
+            {albums.map((album: IAlbum, index: number) => {
+              return <Album id={album?.albumId} key={`album-list-${album.albumId}-${index}`} title={album.title} coverImage={album.coverImage} viewArtist={viewArtist} isArtistView={false} favorite={handleBookmark} isFavorite={checkIsFavorite(album.albumId)} />
             })}
           </div>}
           {albums.length === 0 && <div className="w-full text-center text-xl font-semibold">No Albums Found</div>}
