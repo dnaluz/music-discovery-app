@@ -125,9 +125,9 @@ const Discover = () => {
           })}
         </div>
       </Modal>
-      <div className='w-full h-full backdrop-blur-md bg-white/40 justify-center absolute z-50'></div>
+  
       </>}
-      {favoriteModalOpen && <><Modal title="Favorite Albums" onClose={() => setFavoriteModalOpen(false) } ariaHidden={!favoriteModalOpen}>
+      {favoriteModalOpen && <Modal title="Favorite Albums" onClose={() => setFavoriteModalOpen(false) } ariaHidden={!favoriteModalOpen}>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 justify-between">
           {favorites.map((album, index: number) => (
             <div key={album.id}>
@@ -136,15 +136,13 @@ const Discover = () => {
           ))}
           {favorites.length === 0 && <div className="text-xl font-semibold w-full text-center col-span-4">No Favorites Selected</div>}
           </div>
-        </Modal>
-      <div className='w-full h-full backdrop-blur-md bg-white/40 justify-center absolute z-50'></div></>}
+        </Modal>}
 
-      {errorModalOpen && <><Modal title="An error has occurred" onClose={() => setErrorModalOpen(false) } ariaHidden={!favoriteModalOpen}>
+      {errorModalOpen && <Modal title="An error has occurred" onClose={() => setErrorModalOpen(false) } ariaHidden={!favoriteModalOpen}>
           <div className="w-full text-center text-2xl text-red-500 font-semibold">
             Could not load artist information
           </div>
-        </Modal>
-      <div className='w-full h-full backdrop-blur-md bg-white/40 justify-center absolute z-50'></div></>}
+        </Modal>}
 
       <section className="w-full p-2">
         <div className="flex flex-row items-center">
