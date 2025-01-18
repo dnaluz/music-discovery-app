@@ -19,7 +19,7 @@ const Album = (album: AlbumProps) => {
     <div className="w-full album">
       <div className="aspect-square">
         <div className="relative w-full h-full">
-          {album.coverImage ? <a onClick={() => favorite(album) }><Image src={album.coverImage} alt={album.title} fill className="grayscale hover:grayscale-0 transition-all duration-300 hover:cursor-pointer" priority sizes="(max-width: 768px) 100vw, 100hw" /></a> : <div>No Image</div>}
+          {album.coverImage ? <a onClick={() => favorite(album) }><Image src={album.coverImage} alt={album.title} fill className="grayscale hover:grayscale-0 transition-all duration-300 hover:cursor-pointer" priority sizes="(max-width: 768px) 100vw, 100hw" /></a> : <div className="flex flex-col items-center w-full text-5xl font-semibold justify-center h-full">No Image</div>}
         </div>
       </div>
       <div className="mt-1">
