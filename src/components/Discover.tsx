@@ -21,6 +21,9 @@ const Discover = () => {
   const [favoriteModalOpen, setFavoriteModalOpen] = useState<boolean>(false);
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
 
+
+  const [hideLoadMore, setHideLoadMore] = useState<boolean>(false);
+
   const [query, setQuery] = useState<string>('');
 
   const [filters, setFilters] = useState({
@@ -49,6 +52,8 @@ const Discover = () => {
     const fetchData = async () => {
       try {
         const data = await fetchAlbums(filters, currentPage);
+        setHideLoadMore(data.albums.length < 8);
+
         setAlbums(prev => [...prev, ...data.albums]);
 
       } catch(error) {
@@ -173,10 +178,9 @@ const Discover = () => {
               return <Album id={album?.albumId} key={`album-list-${album.albumId}-${index}`} title={album.title} coverImage={album.coverImage} viewArtist={viewArtist} isArtistView={false} favorite={handleBookmark} isFavorite={checkIsFavorite(album.albumId)} />
             })}
           </div>}
-          {albums.length === 0 && <div className="w-full text-center text-xl font-semibold">No Albums Found</div>}
-          <div className="flex flex-row justify-center w-full mt-8">
+          {!hideLoadMore && <div className="flex flex-row justify-center w-full mt-8">
             <button id="load-more" className="py-2 px-8 text-white text-base font-semibold rounded bg-slate-600 transition-colors duration-300 hover:bg-slate-400" onClick={() => { setCurrentPage(currentPage + 1); }}>Load More</button>
-          </div>
+          </div>}
         </div>
       </section>
     </>
