@@ -7,7 +7,7 @@ export default function Home() {
       <Head><title>Music Discover</title></Head>
       <header>
       </header>    
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <main className="flex flex-col w-full">
         <Discover />
       </main>
       <footer>
