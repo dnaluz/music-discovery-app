@@ -19,6 +19,7 @@ const Discover = () => {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [favoriteModalOpen, setFavoriteModalOpen] = useState<boolean>(false);
+  const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
 
   const [query, setQuery] = useState<string>('');
 
@@ -60,20 +61,23 @@ const Discover = () => {
       document.body.classList.toggle('fixed'); 
   }, [favoriteModalOpen]);
 
-
   const viewArtist = async (id: number) => {
     try {
    
       const data = await fetchArtist(id);
-
+      
       if(data.releases) {
         setArtistAlbums(prev => [...prev, ...data.releases]);
         setCurrentArtist({name: data.artist, id: data.id});
         setModalOpen(true);
+      } else {
+        setErrorModalOpen(true);
       }
 
     } catch(error) {
+      
       setCurrentArtist(null);
+      setErrorModalOpen(true);
       console.error('Error fetching artist information:', error);
     }
   }
@@ -114,8 +118,8 @@ const Discover = () => {
 
   return (
     <>
-      {modalOpen && <><Modal title={currentArtist ? `Albums by ${currentArtist.name}` : 'Could not retrieve artist information'} onClose={() => { setModalOpen(false); }} ariaHidden={!modalOpen}>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 justify-between">
+      {modalOpen && <><Modal title={currentArtist ? `Albums by ${currentArtist.name}` : 'Could not retrieve artist information'} onClose={() => { setArtistAlbums([]); setModalOpen(false); }} ariaHidden={!modalOpen}>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-2 justify-between">
           {artistAlbums?.map((album: IAlbum, index: number) => {
             return <Album id={album?.albumId} key={`modal-${album.id}-${index}`} title={album.title} coverImage={album.thumb ?? ''} viewArtist={viewArtist} isArtistView favorite={handleBookmark} isFavorite={checkIsFavorite(album.id)}/>
           })}
@@ -134,6 +138,14 @@ const Discover = () => {
           </div>
         </Modal>
       <div className='w-full h-full backdrop-blur-md bg-white/40 justify-center absolute z-50'></div></>}
+
+      {errorModalOpen && <><Modal title="An error has occurred" onClose={() => setErrorModalOpen(false) } ariaHidden={!favoriteModalOpen}>
+          <div className="w-full text-center text-2xl text-red-500 font-semibold">
+            Could not load artist information
+          </div>
+        </Modal>
+      <div className='w-full h-full backdrop-blur-md bg-white/40 justify-center absolute z-50'></div></>}
+
       <section className="w-full p-2">
         <div className="flex flex-row items-center">
           <SearchForm onSubmit={search} onChangeInput={(e) => setQuery(e.currentTarget.value)}/>
