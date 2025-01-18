@@ -7,7 +7,7 @@ type ModalProps = {
 };
 
 const Modal = ({title, children, onClose, ariaHidden}: PropsWithChildren<ModalProps>) => {
-  return <div className="modal h-max p-12 pr-6 pt-4 bg-zinc-50 mx-auto w-3/4 rounded-lg drop-shadow-xl border-gray-700 drop-shadow-x absolute left-1/2 -translate-x-1/2 top-10 z-100" aria-hidden={ariaHidden}>
+  return <div className="modal h-max p-12 pr-6 pt-4 bg-zinc-50 mx-auto w-11/12 lg:w-3/4 rounded-lg drop-shadow-xl border-gray-700 drop-shadow-x absolute left-1/2 -translate-x-1/2 top-10 z-100" aria-hidden={ariaHidden}>
           <div className='w-full flex flex-row justify-end'>
             <button
               onClick={() => {
