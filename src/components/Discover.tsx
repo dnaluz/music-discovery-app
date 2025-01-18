@@ -37,6 +37,14 @@ const Discover = () => {
     setCurrentArtist(null);
   }
 
+  const toggle = (fixed:boolean) => {
+    if(fixed) {
+      document.body.classList.add('fixed');
+    } else {
+      document.body.classList.remove('fixed');
+    }
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,12 +62,16 @@ const Discover = () => {
   }, [filters, currentPage]);
 
   useEffect(() => { 
-    document.body.classList.toggle('fixed'); 
+     toggle(modalOpen);
   }, [modalOpen]);
 
   useEffect(() => { 
-      document.body.classList.toggle('fixed'); 
+    toggle(favoriteModalOpen);
   }, [favoriteModalOpen]);
+
+  useEffect(() => { 
+    toggle(errorModalOpen);
+  }, [errorModalOpen]);
 
   const viewArtist = async (id: number) => {
     try {
